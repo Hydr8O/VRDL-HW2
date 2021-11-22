@@ -3,7 +3,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-# Swish https://arxiv.org/pdf/1905.02244.pdf ---------------------------------------------------------------------------
 class Swish(nn.Module):  #
     @staticmethod
     def forward(x):
@@ -33,7 +32,6 @@ class MemoryEfficientSwish(nn.Module):
         return self.F.apply(x)
 
 
-# Mish https://github.com/digantamisra98/Mish --------------------------------------------------------------------------
 class Mish(nn.Module):
     @staticmethod
     def forward(x):
@@ -58,7 +56,6 @@ class MemoryEfficientMish(nn.Module):
         return self.F.apply(x)
 
 
-# FReLU https://arxiv.org/abs/2007.11824 -------------------------------------------------------------------------------
 class FReLU(nn.Module):
     def __init__(self, c1, k=3):  # ch_in, kernel
         super().__init__()
