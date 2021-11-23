@@ -638,8 +638,8 @@ def load_image(self, index):
         h0, w0 = img.shape[:2]  # orig hw
         r = self.img_size / max(h0, w0)  # resize image to img_size
         if r != 1:
-            interp = cv2.INTER_AREA
-            if r < 1 and not self.augment else cv2.INTER_LINEAR
+            interp = (cv2.INTER_AREA
+            if r < 1 and not self.augment else cv2.INTER_LINEAR)
             img = cv2.resize(img, (int(w0 * r), int(h0 * r)),
                              interpolation=interp)
         return img, (h0, w0), img.shape[:2]  # img, hw_original, hw_resized
@@ -908,10 +908,10 @@ def box_candidates(box1, box2, wh_thr=2, ar_thr=20, area_thr=0.2):
     w2, h2 = box2[2] - box2[0], box2[3] - box2[1]
     ar = np.maximum(w2 / (h2 + 1e-16), h2 / (w2 + 1e-16))  # aspect ratio
     # candidates
-    return (w2 > wh_thr) &
+    return ((w2 > wh_thr) &
     (h2 > wh_thr) &
     (w2 * h2 / (w1 * h1 + 1e-16) > area_thr) &
-    (ar < ar_thr)
+    (ar < ar_thr))
 
 
 def cutout(image, labels):
@@ -926,10 +926,10 @@ def cutout(image, labels):
         b2_x1, b2_y1, b2_x2, b2_y2 = box2[0], box2[1], box2[2], box2[3]
 
         # Intersection area
-        inter_area = (
+        inter_area = ((
             np.minimum(b1_x2, b2_x2) - np.maximum(b1_x1, b2_x1)
         ).clip(0) * (np.minimum(b1_y2, b2_y2) - np.maximum(b1_y1, b2_y1))
-        .clip(0)
+        .clip(0))
 
         # box2 area
         box2_area = (b2_x2 - b2_x1) * (b2_y2 - b2_y1) + 1e-16

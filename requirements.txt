@@ -2,4 +2,7 @@ torch
 opencv-python
 tqdm
 pyyaml
-
+pillow
+matplotlib
+torchvision
+scipy

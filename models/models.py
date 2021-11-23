@@ -425,9 +425,9 @@ class Darknet(nn.Module):
             else:
                 x = module(x)
                 try:
-                    if name == "Sequential" and self.module_list[i + 2]
+                    if name == "Sequential" and (self.module_list[i + 2]
                     .__class__
-                    .__name__ == 'YOLOLayer':
+                    .__name__ == 'YOLOLayer'):
                         feature_out.append(x)
                 except:
                     pass
