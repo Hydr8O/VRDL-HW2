@@ -14,7 +14,7 @@ from PIL import Image, ExifTags
 from torch.utils.data import Dataset
 from tqdm import tqdm
 
-from utils.general_no_kd import (
+from utils.general import (
     xyxy2xywh,
     xywh2xyxy, torch_distributed_zero_first)
 
