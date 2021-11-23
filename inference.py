@@ -69,14 +69,14 @@ def test(data,
 
         # load model
         try:
-            ckpt = torch.load(weights[0], map_location=device)
+            ckpt = torch.load(weights, map_location=device)
             ckpt['model'] = {
                 k: v for k, v in ckpt['model'].items()
                 if model.state_dict()[k].numel() == v.numel()
             }
             model.load_state_dict(ckpt['model'], strict=False)
         except:
-            load_darknet_weights(model, weights[0])
+            load_darknet_weights(model, weights)
         imgsz = check_img_size(imgsz, s=32)
 
     # Half
@@ -270,8 +270,6 @@ def test(data,
             f = Path(save_dir) / ('test_batch%g_gt.jpg' % batch_i)  # filename
             plot_images(img, targets, paths, str(f), names)  # ground truth
             f = Path(save_dir) / ('test_batch%g_pred.jpg' % batch_i)
-            plot_images(img, output_to_target(output, width, height),
-                        paths, str(f), names)  # predictions
 
     # Compute statistics
     stats = [np.concatenate(x, 0) for x in zip(*stats)]  # to numpy
