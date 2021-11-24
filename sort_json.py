@@ -6,7 +6,7 @@ import json
 with open('answer-example.json', 'r') as answer_example:
     answer_example = json.load(answer_example)
 
-with open('detections_val2017__results.json', 'r') as answer:
+with open('detections_val2017_best_results.json', 'r') as answer:
     answer = json.load(answer, object_pairs_hook=OrderedDict)
 
 print(answer_example[0]['image_id'])
